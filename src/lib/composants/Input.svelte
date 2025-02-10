@@ -1,21 +1,50 @@
 <script lang="ts">
 	import type { Champ } from '$lib/composants/ValidInput';
 
-	let { text = '', type = 'text' as Champ, value = $bindable('') } = $props();
+	let { text = '', type = 'text' as Champ, value = $bindable(''), fn=null} = $props();
+
+	let passwordVisible =  $state(false)
+
+	function typeChamp(type: string){
+		switch(type){
+
+			case "username":
+				return "text"
+				
+			case "password":{
+				return passwordVisible ? "text" : "password"
+			}
+
+			default:
+				return type
+		}
+	}
 
 </script>
 
 <div class="input-group">
 	<input
 		required
-		type={type === 'username' ? 'text' : type}
+		type={typeChamp(type)}
 		name="text"
 		autocomplete="off"
 		class="input"
 		bind:value
+		onkeydown={(event) => {
+			if (event.key === 'Enter' && fn) {
+				fn();
+				(event.target as HTMLInputElement).blur();
+			}
+		}}
 	/>
 	<!-- svelte-ignore a11y_label_has_associated_control -->
 	<label class="user-label">{text}</label>
+	{#if type === "password" && value.length > 0}
+		{#key passwordVisible}
+		<img class="absolute right-[15px] top-[13px] cursor-pointer" onclick={() => passwordVisible = !passwordVisible} src="{passwordVisible ? "/eye-closed.svg" : "/eye.svg"}" alt="">
+		{/key}
+	{/if}
+
 </div>
 
 <style>

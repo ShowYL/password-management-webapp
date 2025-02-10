@@ -1,0 +1,1 @@
+ALTER TABLE `user` ADD CONSTRAINT `unique_username_password` UNIQUE(`username`,`password`);

@@ -5,30 +5,32 @@ import mysql from "mysql2/promise";
 
 export default class Connection {
 
-    private conn: mysql.Connection;
-    private instance: Connection | null = null
+    private static conn: mysql.Connection;
+    private static instance: Connection | null = null
 
     private constructor(conn: mysql.Connection) {
-        this.conn = conn;
+        Connection.conn = conn;
     }
 
     private static async create(): Promise<mysql.Connection> {
         return await mysql.createConnection({
-            host: MYSQL_HOST + ":" + MYSQL_PORT,
+            host: MYSQL_HOST,
+            port: Number(MYSQL_PORT),
             user: MYSQL_USER,
             database: MYSQL_DATABASE,
             password: MYSQL_PASSWORD
         });
     }
 
-    async getConnection(): Promise<ReturnType<typeof drizzle>> {
-        if(this.instance === null){
+    static async getConnection(): Promise<ReturnType<typeof drizzle>> {
+        if (this.instance === null) {
             this.instance = new Connection(await Connection.create())
         }
-        return drizzle({client: this.conn});
+        return drizzle({ client: Connection.conn });
     }
 
-    async closeConnection(): Promise<void> {
-        this.conn.end();
+    static async closeConnection(): Promise<void> {
+        await Connection.conn.end();
+        Connection.instance = null
     }
 }
