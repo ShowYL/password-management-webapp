@@ -7,8 +7,7 @@ import { sql } from 'drizzle-orm'
 
 
 export async function getUser(username:string, password: string):Promise<{
-    username: string;
-    password: string;
+    username: string
 }[] | false>{
 
     const db: ReturnType<typeof drizzle> = await Connection.getConnection()
@@ -24,7 +23,7 @@ export async function getUser(username:string, password: string):Promise<{
     if (result && result.length > 0){
 
         const foundUser = result.find((person) => bcrypt.compareSync(password, person.password));
-        if (foundUser) return Promise.resolve([{ username: username, password: foundUser.password }]);
+        if (foundUser) return Promise.resolve([{ username: username }]);
     }
 
     return false
