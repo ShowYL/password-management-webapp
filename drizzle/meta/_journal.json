@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1739187555490,
+      "tag": "0000_condemned_silverclaw",
+      "breakpoints": true
+    }
+  ]
+}

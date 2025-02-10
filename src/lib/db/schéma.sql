@@ -14,4 +14,4 @@ CREATE TABLE `Compte` (
     PRIMARY KEY(`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
         ON UPDATE NO ACTION ON DELETE NO ACTION
-);  
+);

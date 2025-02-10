@@ -1,10 +1,12 @@
 <script lang="ts">
+
 	import Input from '$lib/composants/Input.svelte';
 
-	let homepage: boolean = $state(true);
+	let homepage: boolean = $state(false);
 	let login: boolean = $state(true);
-	let username: string = $state('');
-	let password: string = $state('');
+	let username: string = $state("");
+	let password: string = $state("");
+
 </script>
 
 {#if homepage}
@@ -28,20 +30,23 @@
 		style="background-image: url(/background-log.jpg)"
 	>
 		<div class="card z-10">
-			<h1 class="mt-8 text-xl">Login</h1>
+			<h1 class="mt-8 text-2xl">Login</h1>
 			<div class="mt-8 flex h-4/5 w-1/2 flex-col">
-				<div class="mt-16">
-					<Input text="Username" bind:value={username} type="text" />
-				</div>
-				<div class="mt-8">
-					<Input text="Password" bind:value={password} type="password" />
-				</div>
-				<div class="flex">
-					<button
-						class="mt-8 w-full rounded border border-black bg-blue-500 p-2 font-medium hover:bg-blue-600"
-						>Login</button
-					>
-				</div>
+				<form>
+					<div class="mt-12">
+						<Input text="Username" bind:value={username} type="username" />
+					</div>
+					<div class="mt-8">
+						<Input text="Password"bind:value={password} type="password"/>
+					</div>
+					<div class="flex">
+						<button
+							type="submit"
+							class="mt-8 w-full rounded border border-black bg-blue-500 p-2 font-medium hover:bg-blue-600"
+							>Login</button
+						>
+					</div>
+				</form>
 				<p class="mt-4 cursor-default text-xs">
 					You doesnt have an account ? <button
 						class="cursor-pointer text-blue-500 hover:text-blue-600 hover:underline hover:underline-offset-2"
@@ -57,20 +62,22 @@
 		style="background-image: url(/background-log.jpg)"
 	>
 		<div class="card z-10">
-			<h1 class="mt-8 text-xl">Register</h1>
+			<h1 class="mt-8 text-2xl">Register</h1>
 			<div class="mt-8 flex h-4/5 w-1/2 flex-col">
-				<div class="mt-16">
-					<Input text="Username" bind:value={username} type="text" />
-				</div>
-				<div class="mt-8">
-					<Input text="Password" bind:value={password} type="password" />
-				</div>
-				<div class="flex">
-					<button
-						class="mt-8 w-full rounded border border-black bg-blue-500 p-2 font-medium hover:bg-blue-600"
-						>Register</button
-					>
-				</div>
+				<form>
+					<div class="mt-12">
+						<Input text="Username" bind:value={username} type="username" />
+					</div>
+					<div class="mt-8">
+						<Input text="Password" bind:value={password} type="password" />
+					</div>
+					<div class="flex">
+						<button
+							class="mt-8 w-full rounded border border-black bg-blue-500 p-2 font-medium hover:bg-blue-600"
+							>Register</button
+						>
+					</div>
+				</form>	
 				<p class="mt-4 cursor-default text-xs">
 					You already have an account ? <button
 						class="cursor-pointer text-blue-500 hover:text-blue-600 hover:underline hover:underline-offset-2"

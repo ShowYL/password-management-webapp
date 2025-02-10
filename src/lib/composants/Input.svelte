@@ -1,9 +1,19 @@
 <script lang="ts">
-	let { text = '', type="text", value = $bindable('') } = $props();
+	import type { Champ } from '$lib/composants/ValidInput';
+
+	let { text = '', type = 'text' as Champ, value = $bindable('') } = $props();
+
 </script>
 
 <div class="input-group">
-	<input required type={type} name="text" autocomplete="off" class="input" bind:value />
+	<input
+		required
+		type={type === 'username' ? 'text' : type}
+		name="text"
+		autocomplete="off"
+		class="input"
+		bind:value
+	/>
 	<!-- svelte-ignore a11y_label_has_associated_control -->
 	<label class="user-label">{text}</label>
 </div>

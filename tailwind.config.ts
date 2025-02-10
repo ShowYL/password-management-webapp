@@ -9,6 +9,14 @@ export default {
 	theme: {
 		extend: {}
 	},
-
+	safelist: [
+		'focus:border-[1.5px]',
+        'focus:border-blue-600',
+        'valid:border-blue-600',
+        'focus:border-red-600',
+        'valid:border-red-600',
+        'valid:outline-none',
+        'focus:outline-none'
+    ],
 	plugins: [typography, forms, containerQueries]
 } satisfies Config;
