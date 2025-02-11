@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Input from '$lib/composants/Input.svelte';
 	import Popup from '$lib/composants/Popup.svelte';
 	import valid from '$lib/composants/ValidInput';
@@ -39,7 +40,7 @@
 					popupPrint("The password or the username is incorrect")
 					return;
 				}
-
+				goto(`/u/${data.data[0].username}`)
 				return;
 			}
 		} else {
