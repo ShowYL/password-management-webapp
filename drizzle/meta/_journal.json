@@ -1,27 +1,27 @@
 {
-  "version": "7",
-  "dialect": "mysql",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "5",
-      "when": 1739187555490,
-      "tag": "0000_condemned_silverclaw",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1739192776651,
-      "tag": "0001_cultured_mesmero",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1739205960157,
-      "tag": "0002_confused_psynapse",
-      "breakpoints": true
-    }
-  ]
+	"version": "7",
+	"dialect": "mysql",
+	"entries": [
+		{
+			"idx": 0,
+			"version": "5",
+			"when": 1739187555490,
+			"tag": "0000_condemned_silverclaw",
+			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "5",
+			"when": 1739192776651,
+			"tag": "0001_cultured_mesmero",
+			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "5",
+			"when": 1739205960157,
+			"tag": "0002_confused_psynapse",
+			"breakpoints": true
+		}
+	]
 }

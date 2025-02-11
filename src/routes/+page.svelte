@@ -8,15 +8,15 @@
 	let username: string = $state('');
 	let password: string = $state('');
 	let popup: boolean = $state(false);
-	let popupText: string = $state('')
+	let popupText: string = $state('');
 
-	function valide():boolean {
+	function valide(): boolean {
 		return valid(username, 'username') && valid(password, 'password');
 	}
 
-	function popupPrint(text: string){
-		popupText = text
-		popup = true
+	function popupPrint(text: string) {
+		popupText = text;
+		popup = true;
 	}
 
 	async function buttonClicked() {
@@ -32,15 +32,15 @@
 				console.log(data);
 
 				if (data.code === 500) {
-					popupPrint("Internal Error, try again later")
+					popupPrint('Internal Error, try again later');
 					return;
 				}
 
 				if (data.code === 404) {
-					popupPrint("The password or the username is incorrect")
+					popupPrint('The password or the username is incorrect');
 					return;
 				}
-				goto(`/u/${data.data[0].username}`)
+				goto(`/u/${data.data[0].username}`);
 				return;
 			}
 		} else {
@@ -55,7 +55,7 @@
 				console.log(data);
 
 				if (data.code === 500) {
-					popupPrint("Internal Error, try again later")
+					popupPrint('Internal Error, try again later');
 					return;
 				}
 
@@ -97,4 +97,4 @@
 		</div>
 	</div>
 </div>
-<Popup bind:visible={popup} text={popupText} width={"w-[30%]"} height={"h-[15%]"}/>
+<Popup bind:visible={popup} text={popupText} width={'w-[30%]'} height={'h-[15%]'} />

@@ -7,7 +7,7 @@ const config = {
 	// for more information about preprocessors
 	preprocess: vitePreprocess({
 		style: {
-			postcss:true
+			postcss: true
 		}
 	}),
 

@@ -11,5 +11,5 @@ body {
 }
 
 .card {
-	@apply mx-auto my-auto flex h-3/5 min-h-[400px] w-1/2 min-w-80 flex-col bg-neutral-200 drop-shadow-md rounded-xl p-8 items-center;
+	@apply mx-auto my-auto flex h-3/5 min-h-[400px] w-1/2 min-w-80 flex-col items-center rounded-xl bg-neutral-200 p-8 drop-shadow-md;
 }
