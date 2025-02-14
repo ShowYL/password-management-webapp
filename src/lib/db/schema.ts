@@ -1,4 +1,4 @@
-import { mysqlTable, serial, varchar, bigint, uniqueIndex } from 'drizzle-orm/mysql-core';
+import { mysqlTable, serial, varchar, bigint } from 'drizzle-orm/mysql-core';
 
 const varchar255 = () => varchar({ length: 255 });
 
@@ -6,14 +6,14 @@ export const user = mysqlTable(
 	'user',
 	{
 		id: serial().primaryKey(),
-		username: varchar255().notNull(),
+		username: varchar255().notNull().unique(),
 		password: varchar255().notNull()
-	},
-	(table) => [uniqueIndex('unique_username_password').on(table.username, table.password)]
+	}
 );
 
 export const compte = mysqlTable('compte', {
 	id: serial().primaryKey(),
+	title: varchar255(),
 	username: varchar255(),
 	email: varchar255(),
 	password: varchar255().notNull(),
