@@ -103,6 +103,6 @@
 
 	.input:focus ~ label,
 	input:valid ~ label {
-		@apply -translate-y-1/2 scale-[0.8] bg-neutral-200 px-[0.2em] text-blue-500;
+		@apply -translate-y-1/2 scale-[0.8] bg-neutral-300 px-[0.2em] text-blue-500;
 	}
 </style>

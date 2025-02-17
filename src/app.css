@@ -11,5 +11,9 @@ body {
 }
 
 .card {
-	@apply mx-auto my-auto flex h-3/5 min-h-[400px] w-1/2 min-w-80 flex-col items-center rounded-xl bg-neutral-200 p-8 drop-shadow-md;
+	@apply mx-auto my-auto flex h-3/5 min-h-[400px] w-1/2 min-w-80 flex-col items-center rounded-xl bg-neutral-300 p-8 drop-shadow-md;
+}
+
+.card-acc {
+	@apply border border-slate-400 rounded shadow bg-gray-300
 }

@@ -14,7 +14,7 @@
 			<p class="mt-20 text-center text-2xl">
 				{$page.error?.message || ''}<br />{$page.error && 'link' in $page.error
 					? $page.error.link
-					: ''}<br /><span onclick={() => history.back()} class="hover:underline">Go back</span>
+					: ''}<br /><span onclick={() => history.back()} class="hover:underline cursor-pointer">Go back</span>
 			</p>
 		</div>
 	</div>
