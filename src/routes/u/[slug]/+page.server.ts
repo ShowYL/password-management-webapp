@@ -7,6 +7,6 @@ export const load = ( async ({ params }) => {
     const slug = params.slug; 
     const data = await getAllCompte(slug)
     if (!data) error(404)
-    return { slug };
+    return { slug, data };
 
 }) satisfies PageServerLoad;

@@ -5,8 +5,10 @@
 	import type { Champ } from '$lib/composants/ValidInput';
 	import valid from '$lib/composants/ValidInput';
 	import type { PageProps } from './$types';
+	import type { Compte } from '$lib/db/compte';
 
 	let { data }: PageProps = $props();
+	let acc:true | Compte[] = $state(data.data) 
 	let research: string = $state('');
 	let popup: boolean = $state(false);
 
@@ -50,8 +52,8 @@
 <div class="h-full w-full">
 	<div class="h-1/6 p-10 text-3xl">Password Management</div>
 	<div class="h-5/6">
-		<div class="-mt-10 flex h-1/6 w-full items-center gap-4">
-			<dir class="w-2/6"><Input text="Rechercher" type="text" bind:value={research} /></dir>
+		<div class="-mt-10 flex h-1/6 w-full items-center gap-4 ml-6">
+			<div class="w-2/6"><Input text="Rechercher" type="text" bind:value={research} /></div>
 			<button
 				class="rounded border-2 border-neutral-900 p-2 hover:bg-neutral-900 hover:text-white {popup
 					? 'bg-neutral-900 text-white'
@@ -59,13 +61,19 @@
 				onclick={() => (popup = true)}>Add</button
 			>
 		</div>
-		<div class="grid grid-cols-4 grid-rows-3 gap-4 px-6">
-			{#each Array(15) as _, i}
-				<CardAcc text={String(i)} />
-			{/each}
+		<div class="grid grid-cols-4 auto-rows-min gap-4 px-6">
+			{#if acc !== true}
+				{#each acc as i}
+					<CardAcc title={i.title ?? ""} email={i.email ?? ""} password={i.password ?? ""} username={i.username ?? ""}/>
+				{/each}
+			{:else}
+				pas de compte
+			{/if}
 		</div>
 	</div>
 </div>
+
+
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div

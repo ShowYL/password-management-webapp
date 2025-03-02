@@ -4,7 +4,7 @@ import Connection from './index';
 import { sql } from 'drizzle-orm';
 import { getID } from './user';
 
-interface Compte {
+export interface Compte {
     id: number;
     title: string | null;
     username: string | null;
@@ -34,10 +34,8 @@ export async function getAllCompte(username: string): Promise<Compte[] | boolean
 
         if (result && result.length > 0) {
             return Promise.resolve(result)
-        } else {
-            return true
         }
-
+        return true
 
     }
 
@@ -61,6 +59,22 @@ export async function createAcc(title: string | null = null, username: string | 
 
     Connection.closeConnection()
 
-    return result && result.length > 0 ? true : false
+    return result && result.length > 0
 }
 
+export async function updateAcc(title: string | null, username: string | null, password: string, email: string | null, user_name: string): Promise<boolean> {
+
+    const userResult = await getID(user_name)
+
+    if (!userResult || userResult.length === 0) return false
+
+    const user_id = userResult[0].id
+
+    const db: ReturnType<typeof drizzle> = await Connection.getConnection()
+
+    const result = await db.update(compte)
+        .set({ title: title, username: username, password: password, email: email })
+        .where(sql`${user_id} = ${compte.user_id}`)
+
+    return result && result.length > 0
+}
