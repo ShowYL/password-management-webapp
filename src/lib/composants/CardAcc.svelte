@@ -2,6 +2,15 @@
 	let { title = '', email = '', username = '', password = '' } = $props();
 
 	let passwordVisible: boolean = $state(false);
+	let copied: string = $state("");
+
+	function copyToClipboard(value: string) {
+		 if (value !== copied){
+			 navigator.clipboard.writeText(value);
+			 copied = value
+			 alert('Copied !');
+		 }
+	}
 </script>
 
 <div class="card-acc">
@@ -21,7 +30,7 @@
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
 			class="relative rounded p-1 hover:cursor-pointer hover:bg-gray-400"
-			onclick={() => navigator.clipboard.writeText(value)}
+			onclick={() => copyToClipboard(value)}
 		>
 			<div class="text-xs text-gray-600">{display}</div>
 			<div class="text-sm">{passwordVisible ? value : '******'}</div>
@@ -76,7 +85,7 @@
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
 			class="rounded p-1 hover:cursor-pointer hover:bg-gray-400"
-			onclick={() => navigator.clipboard.writeText(value)}
+			onclick={() => copyToClipboard(value)}
 		>
 			<div class="text-xs text-gray-600">{display}</div>
 			<div class="text-sm">{value}</div>
