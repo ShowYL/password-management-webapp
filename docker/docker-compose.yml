@@ -1,0 +1,43 @@
+
+services:
+  password-management:
+    image: password-management
+    restart: always
+    depends_on:
+      - password-management-db
+    environment:
+      - NODE_ENV=production
+      - PORT=80
+      - MYSQL_HOST=password-management-db
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=password-management
+      - MYSQL_USER=password-management
+      - MYSQL_PASSWORD=password-management
+    ports:
+      - "8080:80"
+    volumes:
+      - './app:/var/lib/node'
+    
+  password-management-db:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=password-management
+      - MYSQL_USER=password-management
+      - MYSQL_PASSWORD=password-management
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - './db:/var/lib/mysql'
+    expose:
+      - '3306:3306'
+
+  # optionnal
+  password-management-phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    environment:
+      - PMA_HOST=password-management-db
+      - PMA_PORT=3306
+    ports:
+      - '8081:80'
+

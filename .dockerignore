@@ -1,0 +1,9 @@
+node_modules/
+.vscode
+.svelte-kit
+.idea
+.gitignore
+.git
+.dockerignore
+build/
+docker/

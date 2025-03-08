@@ -1,11 +1,5 @@
 import { drizzle } from 'drizzle-orm/mysql2';
-import {
-	MYSQL_HOST,
-	MYSQL_PORT,
-	MYSQL_USER,
-	MYSQL_DATABASE,
-	MYSQL_PASSWORD
-} from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import mysql from 'mysql2/promise';
 
 export default class Connection {
@@ -18,11 +12,11 @@ export default class Connection {
 
 	private static async create(): Promise<mysql.Connection> {
 		return await mysql.createConnection({
-			host: MYSQL_HOST,
-			port: Number(MYSQL_PORT),
-			user: MYSQL_USER,
-			database: MYSQL_DATABASE,
-			password: MYSQL_PASSWORD
+			host: env.NODE_ENV === 'production' ? env.MYSQL_HOST : 'localhost',
+			port: Number(env.MYSQL_PORT),
+			user: env.MYSQL_USER,
+			database: env.MYSQL_DATABASE,
+			password: env.MYSQL_PASSWORD
 		});
 	}
 
